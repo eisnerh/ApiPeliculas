@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace ApiPeliculas.Modelos
 {
@@ -6,7 +7,8 @@ namespace ApiPeliculas.Modelos
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+        [Required (ErrorMessage = "El nombre es requerido")]
+        public string Nombre { get; set; }
+        public DateTime FechaCreacion { get; set; }
     }
 }
