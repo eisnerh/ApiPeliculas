@@ -4,55 +4,55 @@ using ApiPeliculas.Repositorio.IRepositorio;
 
 namespace ApiPeliculas.Repositorio
 {
-    public class CategoriaRepositorio : ICategoriaRepositorio
+    public class PeliculaRepositorio : IPeliculaRepositorio
     {
         private readonly ApplicationDbContext _Bd;
-        public CategoriaRepositorio(ApplicationDbContext Bd)
+        public PeliculaRepositorio(ApplicationDbContext Bd)
         {
             _Bd = Bd;
         }
 
-        public bool ActualizarCategoria(Categoria _Categoria)
+        public bool ActualizarPelicula(Pelicula _Pelicula)
         {
-            _Categoria.FechaCreacion = DateTime.Now;
-            _Bd.Categoria.Update(_Categoria);
+            _Pelicula.FechaCreacion = DateTime.Now;
+            _Bd.Pelicula.Update(_Pelicula);
             return Guardar();
         }
 
-        public bool BorrarCategoria(Categoria _Categoria)
+        public bool BorrarPelicula(Pelicula _Pelicula)
         {
-            _Bd.Categoria.Remove(_Categoria);
+            _Bd.Pelicula.Remove(_Pelicula);
             return Guardar();
         }
 
-        public bool CrearCategoria(Categoria _Categoria)
+        public bool CrearPelicula(Pelicula _Pelicula)
         {
-            _Categoria.FechaCreacion = DateTime.Now;
-            _Bd.Categoria.Add(_Categoria);
+            _Pelicula.FechaCreacion = DateTime.Now;
+            _Bd.Pelicula.Add(_Pelicula);
             return Guardar();
         }
 
-        public bool ExisteCategoria(string Nombre)
+        public bool ExistePelicula(string Nombre)
         {
-            bool Valor = _Bd.Categoria.Any(c => c.Nombre.ToLower().Trim() == Nombre.ToLower().Trim());
+            bool Valor = _Bd.Pelicula.Any(c => c.Nombre.ToLower().Trim() == Nombre.ToLower().Trim());
             return Valor;
         }
 
-        public bool ExisteCategoria(int Id)
+        public bool ExistePelicula(int Id)
         {
-            return _Bd.Categoria.Any(c => c.Id == Id);
+            return _Bd.Pelicula.Any(c => c.Id == Id);
 
         }
 
-        public Categoria GetCategoria(int CategoriaId)
+        public Pelicula GetPelicula(int PeliculaId)
         {
-            return _Bd.Categoria.FirstOrDefault(c => c.Id == CategoriaId);
+            return _Bd.Pelicula.FirstOrDefault(c => c.Id == PeliculaId);
 
         }
 
-        public ICollection<Categoria> GetCategorias()
+        public ICollection<Pelicula> GetPeliculas()
         {
-            return _Bd.Categoria.OrderBy(c => c.Nombre).ToList();
+            return _Bd.Pelicula.OrderBy(c => c.Nombre).ToList();
         }
 
         public bool Guardar()
