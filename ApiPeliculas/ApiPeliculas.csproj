@@ -21,7 +21,6 @@
     <Folder Include="Modelos\Dtos\" />
     <Folder Include="Modelos\Dtos\" />
     <Folder Include="Peliculas Mapper\" />
-    <Folder Include="Repositorio\" />
   </ItemGroup>
 
 </Project>
